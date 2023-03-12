@@ -51,7 +51,6 @@ function BootstrapDialogTitle(props) {
 } 
 const CelebritiesList = (props) => {
     const {celebrity} = props;
-    console.log("celebrity:",celebrity);
     const [isEditable, setEditable] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -79,35 +78,36 @@ const CelebritiesList = (props) => {
           <div style={{display:"flex", flexDirection:"column"}}>
             <>
  <div style={{display:"flex",justifyContent:"space-between"}}>
-  <div style={{display:"flex",flexDirection:"column"}}>
-    <p>Age</p>
-  {isEditable ? <TextField id="outlined-basic"  variant="outlined" /> : <p>{celebrity?.dob
+  <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start",alignItems:"flex-start"}}>
+    <p style={{marginBottom:"2px"}}>Age</p>
+  {isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.dob}/> : <p>{celebrity?.dob
 }</p>}
   </div>
   
   
-  <div style={{display:"flex",flexDirection:"column"}}>
-    <p>Gender</p>
-{isEditable ? <TextField id="outlined-basic"  variant="outlined" /> : <p>{celebrity?.gender
+  <div style={{display:"flex",flexDirection:"column",marginLeft:"4px",justifyContent:"flex-start",alignItems:"flex-start"}}>
+    <p style={{marginBottom:"2px"}}>Gender</p>
+{isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.gender}/> : <p>{celebrity?.gender
 }</p>}
 </div>
-<div style={{display:"flex",flexDirection:"column"}}>
-<p>Country</p>
-{isEditable ? <TextField id="outlined-basic"  variant="outlined" /> : <p>{celebrity?.country
+<div style={{display:"flex",flexDirection:"column",marginLeft:"4px",justifyContent:"flex-start",alignItems:"flex-start"}}>
+<p style={{marginBottom:"2px"}}>Country</p>
+{isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.country} style={{borderRadius:"6px"}} /> : <p>{celebrity?.country
 
 }</p>}
 </div>
  </div>
  </>
  <div>
- <div style={{display:"flex",flexDirection:"column"}}>
-<p>Description</p>
+ <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start",alignItems:"flex-start"}}>
+<p style={{marginBottom:"2px"}}>Description</p>
   {isEditable ? 
  <TextField
           id="outlined-textarea"
-          
+          style={{width:"-webkit-fill-available"}}
           placeholder="Placeholder"
           multiline
+          value={celebrity?.description}
         />
         : <p>
           {celebrity?.description
@@ -120,7 +120,7 @@ const CelebritiesList = (props) => {
  <div style={{display:"flex", justifyContent:"flex-end",marginTop:"20px"}}>
   {isEditable ? 
   <>
-  <CancelIcon color="error" style={{marginRight:"16px",cursoe:"pointer"}}/>
+  <CancelIcon color="error" style={{marginRight:"16px",cursoe:"pointer"}} onClick={()=>setEditable(false)}/>
   <CheckCircleIcon color="success" onClick={() => setEditable(true)} style={{cursor:"pointer"}}/></>: <><DeleteIcon color="error" style={{marginRight:"16px",cursoe:"pointer"}} onClick={handleClickOpen}/>
   <EditIcon color="primary" onClick={() => setEditable(true)} style={{cursor:"pointer"}}/> </>}
   
