@@ -40,3 +40,7 @@ display:flex;
     transform: rotate(360deg);
   }
 }
+
+.inputRounded .MuiOutlinedInput-root {
+  border-radius: 20px;
+}

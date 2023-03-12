@@ -12,10 +12,14 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { React, useState } from 'react';
+import './App.css';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -60,6 +64,8 @@ const CelebritiesList = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleChange = (event) => {
+  };
     return(
       <div style={{margin:"16px",width:"600px",border:"1px solid gray",borderRadius:"4px"}}>
         <Accordion>
@@ -79,20 +85,31 @@ const CelebritiesList = (props) => {
             <>
  <div style={{display:"flex",justifyContent:"space-between"}}>
   <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start",alignItems:"flex-start"}}>
-    <p style={{marginBottom:"2px"}}>Age</p>
-  {isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.dob}/> : <p>{celebrity?.dob
+    <p style={{marginBottom:"2px",color:"#808080"}}>Age</p>
+  {isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.dob} className="inputRounded"/> : <p style={{marginTop:"1px"}}>{celebrity?.dob
 }</p>}
   </div>
   
   
   <div style={{display:"flex",flexDirection:"column",marginLeft:"4px",justifyContent:"flex-start",alignItems:"flex-start"}}>
-    <p style={{marginBottom:"2px"}}>Gender</p>
-{isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.gender}/> : <p>{celebrity?.gender
+    <p style={{marginBottom:"2px",color:"#808080"}}>Gender</p>
+{isEditable ? 
+<Select
+          value={celebrity?.gender}
+          onChange={handleChange}
+          inputProps={{ 'aria-label': 'Without label' }}
+          style={{borderRadius: '20px',width:"180px"}}
+        >
+          <MenuItem value={"male"}>Male</MenuItem>
+          <MenuItem value={"female"}>Female</MenuItem>
+        </Select>
+
+: <p style={{marginTop:"1px"}}>{celebrity?.gender
 }</p>}
 </div>
 <div style={{display:"flex",flexDirection:"column",marginLeft:"4px",justifyContent:"flex-start",alignItems:"flex-start"}}>
-<p style={{marginBottom:"2px"}}>Country</p>
-{isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.country} style={{borderRadius:"6px"}} /> : <p>{celebrity?.country
+<p style={{marginBottom:"2px",color:"#808080"}}>Country</p>
+{isEditable ? <TextField id="outlined-basic"  variant="outlined" value={celebrity?.country} className="inputRounded" /> : <p style={{marginTop:"1px"}}>{celebrity?.country
 
 }</p>}
 </div>
@@ -100,7 +117,7 @@ const CelebritiesList = (props) => {
  </>
  <div>
  <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start",alignItems:"flex-start"}}>
-<p style={{marginBottom:"2px"}}>Description</p>
+<p style={{marginBottom:"2px",color:"#808080"}}>Description</p>
   {isEditable ? 
  <TextField
           id="outlined-textarea"
@@ -108,8 +125,9 @@ const CelebritiesList = (props) => {
           placeholder="Placeholder"
           multiline
           value={celebrity?.description}
+          className="inputRounded"
         />
-        : <p>
+        : <p style={{textAlign:"left",marginTop:"2px"}}>
           {celebrity?.description
 }
         </p>
