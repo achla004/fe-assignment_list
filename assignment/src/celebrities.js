@@ -62,15 +62,15 @@ const CelebritiesList = (props) => {
     setOpen(false);
   };
     return(
-      <div style={{margin:"16px"}}>
+      <div style={{margin:"16px",width:"600px",border:"1px solid gray",borderRadius:"4px"}}>
         <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography style={{display:"flex"}}>
-            <img src={celebrity?.picture} width="30px" height="30px"/>
+          <Typography style={{display:"flex",alignItems:"center"}}>
+            <img src={celebrity?.picture} alt="celebrity" style={{borderRadius: "100px",border: "1px solid gray"}}/>
             <p style={{marginLeft:"20px"}}>{celebrity?.first} {celebrity?.last}</p>
             
           </Typography>
